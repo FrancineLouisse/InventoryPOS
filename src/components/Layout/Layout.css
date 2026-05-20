@@ -1,0 +1,19 @@
+/* ── Layout root: full viewport, no overflow ── */
+.layout-root {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;       /* nothing spills outside the viewport */
+  background: #f0f2f5;
+}
+
+/* ── Main content: fills remaining space, scrolls vertically ── */
+.layout-content {
+  flex: 1;
+  min-width: 0;           /* prevents flex child from overflowing */
+  height: 100vh;
+  overflow-y: auto;       /* only this panel scrolls — no page scrollbar */
+  overflow-x: hidden;
+  padding: 30px;
+  background: #f0f2f5;
+}

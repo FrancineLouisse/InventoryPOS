@@ -1,0 +1,267 @@
+/* ─────────────────────────────────────────────
+   Sidebar — Anilao Bikeshop
+   ───────────────────────────────────────────── */
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap');
+
+:root {
+  --blue:        #3066BE;
+  --blue-dark:   #2555a8;
+  --active-bg:   rgba(255, 255, 255, 0.18);
+  --active-bg-solid: #f0f4ff;
+  --text-light:  #ffffff;
+  --text-muted:  rgba(255, 255, 255, 0.70);
+  --sidebar-w:   240px;
+  --collapsed-w: 72px;
+  --radius:      12px;
+  --transition:  0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Container ──────────────────────────────── */
+.sidebar-container {
+  font-family: 'Barlow', sans-serif;
+  background-color: var(--blue);
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 14px 20px;
+  transition: width var(--transition);
+  overflow: hidden;
+  box-shadow: 4px 0 20px rgba(48, 102, 190, 0.35);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.sidebar-container.collapsed {
+  width: var(--collapsed-w);
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+}
+
+/* ── Logo / Header ──────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.sidebar-container.collapsed .logo {
+  justify-content: center;
+}
+
+.logo-text {
+  line-height: 1.1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.logo-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.logo-sub {
+  margin: 1px 0 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+/* ── Collapse Button ────────────────────────── */
+.collapse-btn {
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  transition: background var(--transition), transform var(--transition);
+  flex-shrink: 0;
+  /* Stick to right edge in expanded mode */
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar-container.collapsed .collapse-btn {
+  position: static;
+  transform: none;
+  margin: 0 auto;
+}
+
+.collapse-btn:hover {
+  background: #e8eeff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.sidebar-container.collapsed .collapse-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ── Divider ────────────────────────────────── */
+.sidebar-divider {
+  border: none;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.20);
+  margin: 12px 0 16px;
+  width: 100%;
+}
+
+/* ── Menu Items ─────────────────────────────── */
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  width: 100%;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  color: var(--text-light);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar-container.collapsed .sidebar-item {
+  justify-content: center;
+  padding: 10px;
+  gap: 0;
+}
+
+.sidebar-item:hover {
+  background: var(--active-bg);
+}
+
+.sidebar-item.active {
+  background: var(--active-bg-solid);
+  color: var(--blue);
+}
+
+.sidebar-item.active .sidebar-icon {
+  color: var(--blue);
+}
+
+.sidebar-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  color: var(--text-light);
+  transition: color var(--transition);
+}
+
+.item-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  overflow: hidden;
+}
+
+/* ── User Footer ────────────────────────────── */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.20);
+  width: 100%;
+  gap: 8px;
+}
+
+.sidebar-container.collapsed .sidebar-user {
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.avatar-icon {
+  font-size: 20px;
+}
+
+.user-text {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.user-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-light);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ── Logout ─────────────────────────────────── */
+.logout-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+
+.logout-btn:hover {
+  background: var(--active-bg);
+}
+
+.logout-icon {
+  font-size: 20px;
+  color: var(--text-light);
+}
